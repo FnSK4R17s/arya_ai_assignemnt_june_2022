@@ -131,23 +131,23 @@ def train_model(train_targets, train_features, iter):
         train_features, train_targets, test_size=0.2, random_state=42
     )
 
-    pipe = make_pipeline(StandardScaler(), LogisticRegression())
-    pipe.fit(X_train, y_train)
-    score = pipe.score(X_test, y_test)
+    # pipe = make_pipeline(StandardScaler(), LogisticRegression())
+    # pipe.fit(X_train, y_train)
+    # score = pipe.score(X_test, y_test)
 
-    print(score)
-    # scaler = StandardScaler().fit(X_train)
-    # X_scaled = scaler.transform(X_train)
+    # print(score)
+    scaler = StandardScaler().fit(X_train)
+    X_scaled = scaler.transform(X_train)
 
-    # model = LogisticRegression(max_iter=iter)
-    # model.fit(X_scaled, y_train)
+    model = LogisticRegression(max_iter=iter)
+    model.fit(X_scaled, y_train)
 
-    # scaler = StandardScaler().fit(X_test)
-    # X_test_scaled = scaler.transform(X_test)
-    # y_pred = model.predict(X_test_scaled)
+    scaler = StandardScaler().fit(X_test)
+    X_test_scaled = scaler.transform(X_test)
+    y_pred = model.predict(X_test_scaled)
 
-    # print(confusion_matrix(y_test, y_pred))
-    # print(classification_report(y_test, y_pred))
+    print(confusion_matrix(y_test, y_pred))
+    print(classification_report(y_test, y_pred))
 
 
 if __name__ == "__main__":
